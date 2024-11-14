@@ -1,0 +1,31 @@
+.book-info{
+    width: 100%;
+    background-color: var(--secondary);
+    border-right: 10px solid green;
+
+}
+.book-info-container {
+
+}
+
+.book-info-cover{
+    /* border-radius: 0 0 10px 10px; */
+    width: 20%;
+    float: left;
+    margin-right: 10px;
+}
+
+.book-description{
+    text-align: justify;
+}
+
+.book-info-container h1{
+    /* height: 300px; */
+}
+
+.book-info-container h2{
+    color: var(--secondary);
+    /* border-radius: 10px; */
+    background-color: var(--secondary);
+    color: white;
+}

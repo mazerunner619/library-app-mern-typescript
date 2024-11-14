@@ -1,0 +1,32 @@
+.get-library-card{
+    height: fit-content;
+    padding: 1%;
+    border-radius: 12px;
+    box-shadow:var(--box-shadow);
+    background-color: var(--background-secondary);
+    transform: rotateZ('15deg');
+
+}
+
+.get-library-card-image{
+    width: 60%;
+    margin: 1% auto;
+
+}
+
+.get-library-card p{
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.get-library-card-link{
+    color: var(--primary);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.get-library-card-link:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+

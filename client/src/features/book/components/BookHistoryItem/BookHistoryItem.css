@@ -1,0 +1,27 @@
+.book-history-item{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 8-x;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.book-history-item-group{
+    height: fit-content;
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.red{
+    color: #CB4C4E;
+}
+
+.green{
+    color: #3cb043;
+}

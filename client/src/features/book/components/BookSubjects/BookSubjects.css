@@ -1,0 +1,21 @@
+.book-subjects{
+    width: 100%;
+    height: fit-content;
+    /* border-radius: 12px; */
+    /* margin-top: 16px; */
+    max-height: 500px;
+    padding: 16px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-secondary);
+    overflow: scroll;
+}
+
+.book-info-subjects-box{
+    font-style: italic;
+    text-align: justify;
+}
+
+/* .book-info-subject{
+    margin-right: 8px;
+    margin-bottom: 4px;
+} */

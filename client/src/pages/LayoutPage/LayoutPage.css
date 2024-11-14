@@ -1,0 +1,9 @@
+.footer{
+    text-align: center;
+    background-color:var(--secondary);
+    width: "100%";
+}
+
+.footer a{
+    color: white;
+}

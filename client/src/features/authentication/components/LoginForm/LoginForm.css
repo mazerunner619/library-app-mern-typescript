@@ -1,0 +1,58 @@
+/* 2hr 29mins */
+
+.login-form{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form-error {
+    margin-bottom: 16px;
+    color:#CB4C4E;
+}
+
+.login-form-input-group{
+    width: 100%;
+    /* margin-bottom: 12px; */
+}
+
+.login-form-input {
+    width: 100%;
+}
+
+.login-form-input::placeholder{
+    color: var(--text-secondary);
+}
+
+.login-form-input:focus {
+    outline:none;
+}
+
+.login-form-submit {
+    width: 100%;
+    border: none;
+    background-color: var(--secondary);
+    border-radius: 5px;
+    margin-top: 16px;
+    color: white;
+}
+
+.login-form-submit:hover {
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+}
+
+.login-form-register{
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.login-form-register:hover{
+    text-decoration: underline;   
+}
+
+
+

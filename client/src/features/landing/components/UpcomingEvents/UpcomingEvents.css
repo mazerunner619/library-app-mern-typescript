@@ -1,0 +1,16 @@
+.upcoming-events{
+    height: fit-content;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-secondary);
+    margin-top: 16px;
+    width: 100%;
+}
+
+.upcoming-events-header-group{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
