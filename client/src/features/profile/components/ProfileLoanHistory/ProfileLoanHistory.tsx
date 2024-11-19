@@ -6,6 +6,7 @@ import { LoanRecord } from "../../../../models/LoanRecord";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/ReduxStore";
 import { ProfileLoanRecord } from "../ProfileLoanRecord/ProfileLoanRecord";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const ProfileLoanHistory = () => {
 
@@ -16,7 +17,7 @@ const ProfileLoanHistory = () => {
             console.log('fetching users history', user)
             if(user) {
                 try{
-                let res = await axios.post('/api/record/query', {
+                let res = await axios.post(BASE_URL+'/api/record/query', {
                     property: "patron",
                     value: user._id
                 });
