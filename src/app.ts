@@ -8,7 +8,11 @@ const app: Express = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+app.use(
+  cors({
+    origin: config.server.origin,
+  })
+);
 registerRoutes(app);
 
 export const connectDataBase = async () => {
