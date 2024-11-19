@@ -9,7 +9,6 @@ const PORT = config.server.port;
     app.listen(PORT, () => {
       console.log(`server running on PORT : ${PORT}`);
     });
-    // atif
   } catch (error: any) {
     console.log("server error: ", error.message);
   }

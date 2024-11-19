@@ -7,6 +7,7 @@ import {
   CheckoutBookPayload,
 } from "../../models/LoanRecord";
 import { LoanRecord } from "../../models/LoanRecord";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 interface BookSliceState {
   loading: boolean;
@@ -34,7 +35,9 @@ export const checkoutBook = createAsyncThunk(
     try {
       const dueDate = new Date();
       dueDate.setDate(dueDate.getDate() + 14);
-      let result = await axios.get(`/api/card/${payload.libraryCard}`);
+      let result = await axios.get(
+        BASE_URL + `/api/card/${payload.libraryCard}`
+      );
       const patronId = result.data.libraryCard.user;
       const record = {
         status: "LOANED",
@@ -44,7 +47,7 @@ export const checkoutBook = createAsyncThunk(
         employeeOut: payload.employee._id,
         item: payload.book._id,
       };
-      result = await axios.post("/api/record", record);
+      result = await axios.post(BASE_URL + "/api/record", record);
       return result.data.record;
     } catch (error: any) {
       if (error.response?.data?.message)
@@ -58,7 +61,7 @@ export const checkinBook = createAsyncThunk(
   "book/checkin",
   async (payload: CheckinBookPayload, thunkAPI) => {
     try {
-      let result = await axios.post("/api/record/query", {
+      let result = await axios.post(BASE_URL + "/api/record/query", {
         property: "_id",
         value: payload.book.records[0],
       });
@@ -74,7 +77,7 @@ export const checkinBook = createAsyncThunk(
         employeeIn: payload.employee._id,
         item: loanRecord.item,
       };
-      result = await axios.put("/api/record", record);
+      result = await axios.put(BASE_URL + "/api/record", record);
       return result.data.record;
     } catch (error: any) {
       if (error.response?.data?.message)
@@ -88,7 +91,7 @@ export const fetchAllBooks = createAsyncThunk(
   "book/all",
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get("/api/book");
+      const { data } = await axios.get(BASE_URL + "/api/book");
       return data.books;
     } catch (error: any) {
       if (error.response?.data?.message)
@@ -102,7 +105,7 @@ export const queryBooks = createAsyncThunk(
   "book/query",
   async (payload: string, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/api/book/query${payload}`);
+      const { data } = await axios.get(BASE_URL + `/api/book/query${payload}`);
       console.log(data.page);
       return data.page;
     } catch (error: any) {
@@ -117,11 +120,13 @@ export const loadBookByBarcode = createAsyncThunk(
   "book/barcode",
   async (payload: string, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/api/book/query?barcode=${payload}`);
+      const { data } = await axios.get(
+        BASE_URL + `/api/book/query?barcode=${payload}`
+      );
       let book = data.page.items[0];
       if (!book || book.barcode !== payload)
         throw new Error("not found book with this barcode");
-      let bookLoanRecord = await axios.post("/api/record/query", {
+      let bookLoanRecord = await axios.post(BASE_URL + "/api/record/query", {
         property: "item",
         value: book._id,
       });

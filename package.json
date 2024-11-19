@@ -8,11 +8,11 @@
     "build": "rimraf dist && tsc",
     "client":"npm run dev --prefix client",
     "prestart":"npm run build",
-    "start":"node ./dist/server.js",
+    "start":"nodemon ./src/server.ts",
     "start-app":"concurrently \"npm run server\" \"npm run client\"",
     "render-pre-build":"npm i --prefix client && npm run build --prefix client"
   },
-  "author": "",
+  "author": "atif",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.2",

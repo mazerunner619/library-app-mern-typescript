@@ -11,13 +11,17 @@ import LoanRecordDao from "../daos/LoanRecordDao";
 import LibraryCardDao from "../daos/LibraryCardDao";
 
 export const registerRoutes = (app: Express) => {
+  app.get("/", (req: Request, res: Response) => {
+    res.status(200).json({ message: "server running properly" });
+  });
+
   app.use("/api/auth", authRoutes);
   app.use("/api/user", userRoutes);
   app.use("/api/book", bookRoutes);
   app.use("/api/card", libraryCardRoutes);
   app.use("/api/record", loanRecordRoutes);
 
-  app.get("/clear-all", async (req, res) => {
+  app.get("/clear-all", async (_: Request, res: Response) => {
     let a = await LoanRecordDao.deleteMany();
     let b = await BookDao.updateMany(
       {},
@@ -27,7 +31,7 @@ export const registerRoutes = (app: Express) => {
     res.json({ a, b, c });
   });
 
-  app.get("/api/book-of-the-week", async (req, res) => {
+  app.get("/api/book-of-the-week", async (req: Request, res: Response) => {
     let result = await BookDao.aggregate([
       {
         $addFields: {
@@ -45,7 +49,7 @@ export const registerRoutes = (app: Express) => {
     ]);
 
     let lastIndexWithAboveCount = result.findIndex(
-      (rec) => rec.recordCount < result[0].recordCount
+      (rec: any) => rec.recordCount < result[0].recordCount
     );
     if (lastIndexWithAboveCount === -1) lastIndexWithAboveCount = result.length;
     let randomIndex = Math.floor(Math.random() * lastIndexWithAboveCount);
