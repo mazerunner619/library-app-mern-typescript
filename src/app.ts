@@ -1,9 +1,9 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import cors from "cors";
 import { config } from "./config";
 import mongoose from "mongoose";
 import { registerRoutes } from "./routes";
-import path from "path";
+
 const app: Express = express();
 
 app.use(express.json());
@@ -13,6 +13,7 @@ app.use(
     origin: config.server.origin,
   })
 );
+
 registerRoutes(app);
 
 export const connectDataBase = async () => {
