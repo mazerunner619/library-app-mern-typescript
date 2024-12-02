@@ -1,8 +1,25 @@
 import {
   getAllBooksByLimit,
+  getBookByid,
   getBookOfTheWeek,
-  getParamsValus,
+  searchForBooksQuery,
+  updateBook,
 } from "./controllers/bookController";
+import {
+  createRecord,
+  fetchItemForLoanRecord,
+  fetchUserForLoanRecord,
+  getAllRecords,
+  getRecordsByProperty,
+  updateRecord,
+} from "./controllers/recordController";
+import {
+  getAllUsers,
+  getUserById,
+  handleLogin,
+  handleRegister,
+  updateUser,
+} from "./controllers/userController";
 
 const resolvers = {
   Query: {
@@ -13,7 +30,28 @@ const resolvers = {
       return "Md Atif Ansar";
     },
     bookOfTheWeek: getBookOfTheWeek,
-    getAllBooksByLimit: getAllBooksByLimit,
+    getAllBooksByLimit,
+    handleLogin,
+    getBookByid,
+    searchForBooksQuery,
+    getAllUsers,
+    getUserById,
+    getAllRecords,
+    getRecordsByProperty,
+  },
+  Mutation: {
+    handleRegister,
+    updateBook,
+    updateUser,
+    updateRecord,
+    createRecord,
+  },
+  LoanRecord: {
+    item: fetchItemForLoanRecord,
+    patron: (parent: any) => fetchUserForLoanRecord(parent, "PATRON"),
+    employeeIn: (parent: any) => fetchUserForLoanRecord(parent, "EMPLOYEE_IN"),
+    employeeOut: (parent: any) =>
+      fetchUserForLoanRecord(parent, "EMPLOYEE_OUT"),
   },
 };
 

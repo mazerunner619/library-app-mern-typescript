@@ -31,9 +31,10 @@ export const modifyRecord = async (
   record: ILoanRecordModel
 ): Promise<ILoanRecordModel> => {
   try {
+    const { _id, ...updateFields } = record;
     const updatedRecord = await LoanRecordDao.findOneAndUpdate(
-      { _id: record._id },
-      record,
+      { _id },
+      { $set: { ...updateFields } },
       { new: true }
     );
     const result = await BookDao.findOneAndUpdate(

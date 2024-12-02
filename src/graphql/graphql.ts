@@ -4,11 +4,19 @@ import { Express, Request, Response } from "express";
 import { expressMiddleware } from "@apollo/server/express4";
 import resolvers from "./resolvers";
 import typeDefs from "./typedefs";
+import { GraphQLError } from "graphql";
 
 export interface Context {
   req: Request;
   res: Response;
 }
+
+export const commonError = new GraphQLError("something went wrong!", {
+  extensions: {
+    code: "NOT FOUND",
+    status: 500,
+  },
+});
 
 export const graphqlServer = new ApolloServer({
   typeDefs,

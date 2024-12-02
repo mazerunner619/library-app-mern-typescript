@@ -64,9 +64,14 @@ export const findUserById = async (userId: string): Promise<IUserModel> => {
 
 export const modifyUser = async (user: IUserModel): Promise<IUserModel> => {
   try {
-    const updatedUser = await UserDao.findByIdAndUpdate(user._id, user, {
-      new: true,
-    });
+    const { _id, ...updateFields } = user;
+    const updatedUser = await UserDao.findByIdAndUpdate(
+      user._id,
+      { $set: { ...updateFields } },
+      {
+        new: true,
+      }
+    );
     if (updatedUser) return updatedUser;
     throw new UserDoesNotExistError(`user could not be found! ${user._id}`);
   } catch (error: any) {
