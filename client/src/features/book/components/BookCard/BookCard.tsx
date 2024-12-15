@@ -55,7 +55,8 @@ const Component:React.FC<BookCardProps> = ({book}) => {
     }
 
     return(
-        <div className="book-card">
+
+        <div className="book-card sm:w-[80%] md:w-1/4">
             <img src={book.cover} alt="book-card-cover" className="book-card-cover" />
             <div className="book-card-info" onClick={displaybook}>
                 <h1 className="book-card-title">{ book.title}</h1>

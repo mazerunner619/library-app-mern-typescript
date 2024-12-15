@@ -1,24 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-:root{
-  --background-primary: #EEF0F2;
-  --background-secondary: #F3F3F3;
-  --text: #1C120C;
-  --text-secondary:#7A7978;
-  --primary: #3626A7;
-  --secondary: #0DAB76;
-  --box-shadow: rgba(100, 100, 111, .2) 0px 7px 29px 0px;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-menu {
+    @apply border-t border-white rounded-full px-2 shadow-lg hover:no-underline hover:text-white hover:text-opacity-90 hover:shadow-md;
+  }
 }
 
-html, body, #root{
+:root {
+  --background-primary: #eef0f2;
+  --background-secondary: #f3f3f3;
+  --text: #1c120c;
+  --text-secondary: #7a7978;
+  --primary: #3626a7;
+  --secondary: #0dab76;
+  --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
   font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
 }
-
 
 /* reset global css */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 /*
@@ -39,68 +54,40 @@ body {
 /*
   5. Improve media defaults
 */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 /*
   6. Remove built-in form typography styles
 */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 /*
   7. Avoid text overflows
 */
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
-/*
-  8. Create a root stacking context
-*/
-#root, #__next {
-  isolation: isolate;
-}
-/* 
-h1{
-  font-size: 3rem;
-  font-weight: 900;
-}
 
-h2{
-  font-size: 2.5rem;
-  font-weight: 800;
-}
-
-h3{
-  font-size: 2.25rem;
-  font-weight: 700;
-}
-
-h4{
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-h5{
-  font-size: 1.75rem;
-  font-weight: 600;
-}
-
-
-h6{
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-*/
-
-
-p{
+p {
   font-size: 1.25rem;
   font-weight: 500;
 }
-
 
 .page {
   width: 100%;
@@ -111,7 +98,7 @@ p{
   align-items: center;
 }
 
-.page-container{
+.page-container {
   width: 100%;
   height: 100%;
   padding: 16px;
@@ -120,5 +107,5 @@ p{
   justify-content: space-between;
   align-items: flex-start;
   background-color: var(--background-primary);
-  box-shadow:var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }

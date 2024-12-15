@@ -39,7 +39,8 @@ export const RegisterForm:React.FC<RegisterFormProps> = ({toggleLogin}) => {
 
     return(
         <form className="login-form">
-           <h2>Please register</h2>
+            <span className='text-lg'>Please Register!</span>
+            <hr className='py-2 border-1 border-slate-900 w-full' />
             <div className="login-form-input-group">
                 <h6>First Name</h6>
                 <input className='login-form-input' type='text' placeholder='first name' name='firstname' required ref={firstRef}/>
@@ -58,10 +59,10 @@ export const RegisterForm:React.FC<RegisterFormProps> = ({toggleLogin}) => {
             </div>
             {error ? <p className='login-form-error'>{errorDetail}</p> : <></>}
             <button className='login-form-submit' onClick={handleRegisterUser}>Register</button>
-            <p>
+            <div>
                 Already have an account?
                 <span className='login-form-register' onClick={toggleLogin}>Sign In</span>
-            </p>
+            </div>
         </form>
     )
 }

@@ -66,3 +66,9 @@
     background-color: rgba(122, 121, 120, 3);
     border-radius: 100%;
 }
+
+@media screen and (max-width: 768px) {
+    .book-carousel{
+        width: 50%;
+    }
+}

@@ -28,10 +28,10 @@ const CatalogSearch:React.FC = () => {
                 bookState.loading ? 
                 <>hold on a second...</>
                 :
-                <>
+                <div>
                     {
                         bookState.pagingInfo &&
-                        <h2>Displaying {bookState.pagingInfo?.pageCount} books out of {bookState.pagingInfo?.totalCount}</h2>
+                        <h2 className="p-2 text-center bg-[color:--secondary] text-white my-2 rounded-lg">Displaying {bookState.pagingInfo?.pageCount} books out of {bookState.pagingInfo?.totalCount}</h2>
                     }
                     <div className="catalog-search-item-area">
                         {bookState.books.map( book => <BookCard key={book.barcode} book={book} />)}
@@ -39,7 +39,7 @@ const CatalogSearch:React.FC = () => {
                     <div className="catalog-search-pages">
                         <CatalogSearchPageNavigator />
                     </div>
-                </>
+                </div>
             }
             {
                 bookState.error && <p style={{color:"red"}}>Oops! {bookState.error}</p>

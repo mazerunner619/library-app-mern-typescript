@@ -2,12 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/ReduxStore";
 import { setDisplayLibraryCard, setDisplayLogin } from "../../../../redux/slices/ModalSlice";
 import { getLibraryCard } from "../../../../redux/slices/AuthSlice";
+import { useState } from "react";
 
 
 const LibraryCardForm = () => {
 
     const dispatch:AppDispatch = useDispatch();
     const userState = useSelector( (state:RootState) => state.auth);
+    const [copied, setCopied] = useState(false);
+    let tm;
 
     const handleLogin = () => {
         dispatch(setDisplayLibraryCard(false));
@@ -20,6 +23,14 @@ const LibraryCardForm = () => {
         }
     }
 
+    function copyToClipboard() {
+        var copyText = document.getElementById("tobecopied")!;
+        navigator.clipboard.writeText(copyText.innerHTML);
+        setCopied(true);
+        clearTimeout(tm);
+        setTimeout(() => setCopied(false), 1000)
+    }
+
     return(
         <>
         {
@@ -28,7 +39,10 @@ const LibraryCardForm = () => {
                 <h3 className="register-library-card-text">Welcome! {userState.loggedInUser.firstName} {userState.loggedInUser.lastName}, good day</h3>
                 {
                     userState.libraryCard ? 
-                    <p className="register-library-card-text">Your library card number : {userState.libraryCard}</p>
+                    <>
+                    <p className="register-library-card-text">Your library card number : <span className="cursor-copy" style={{color:copied?"green":"black"}} id="tobecopied" onClick={copyToClipboard}>{userState.libraryCard}</span></p>
+                    <p className="text-sm text-green-500">{copied && "copied"}</p>
+                    </>
                     :
                     <>
                         <h4 className="register-library-card-text">Use the button below to get you new/forgotten library card</h4>
