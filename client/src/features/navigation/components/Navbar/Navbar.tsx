@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/ReduxStore";
-import { Link, useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setDisplayLogin } from "../../../../redux/slices/ModalSlice";
 import {LocalLibraryRounded } from "@mui/icons-material";
 import MenuIcon from '@mui/icons-material/Menu';
