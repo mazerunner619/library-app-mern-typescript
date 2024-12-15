@@ -8,6 +8,6 @@
     "strict": true,
     "skipLibCheck": true //skip type checking of declaration files
   },
-  "include": ["src/**/*", "client"],
-  "exclude": ["client"]
+  "include": ["src/**/*"],
+  "exclude": ["client", "test"]
 }

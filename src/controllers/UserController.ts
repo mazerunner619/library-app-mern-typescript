@@ -6,18 +6,20 @@ import {
   modifyUser,
 } from "../services/UserService";
 import { UserDoesNotExistError } from "../utils/LibraryErrors";
+import LoanRecordDao from "../daos/LoanRecordDao";
+import BookDao from "../daos/BookDao";
+import LibraryCardDao from "../daos/LibraryCardDao";
+import UserDao from "../daos/UserDao";
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const users = await findAllUsers();
     res.status(200).json({ message: "fetched all users!", users });
   } catch (error: any) {
-    res
-      .status(500)
-      .json({
-        message: "Unable to fetch users at the moment!",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Unable to fetch users at the moment!",
+      error: error.message,
+    });
   }
 };
 
@@ -30,12 +32,10 @@ export const getUserById = async (req: Request, res: Response) => {
     if (error instanceof UserDoesNotExistError)
       res.status(404).json({ message: "User does not exist!" });
     else
-      res
-        .status(500)
-        .json({
-          message: "Unable to find user at the moment!",
-          error: error.message,
-        });
+      res.status(500).json({
+        message: "Unable to find user at the moment!",
+        error: error.message,
+      });
   }
 };
 
@@ -48,12 +48,10 @@ export const updateUser = async (req: Request, res: Response) => {
     if (error instanceof UserDoesNotExistError)
       res.status(404).json({ message: "User does not exist!" });
     else
-      res
-        .status(500)
-        .json({
-          message: "Unable to update user at the moment!",
-          error: error.message,
-        });
+      res.status(500).json({
+        message: "Unable to update user at the moment!",
+        error: error.message,
+      });
   }
 };
 
@@ -66,11 +64,20 @@ export const deleteUser = async (req: Request, res: Response) => {
     if (error instanceof UserDoesNotExistError)
       res.status(404).json({ message: "User does not exist!" });
     else
-      res
-        .status(500)
-        .json({
-          message: "Unable to delete user at the moment!",
-          error: error.message,
-        });
+      res.status(500).json({
+        message: "Unable to delete user at the moment!",
+        error: error.message,
+      });
   }
+};
+
+export const clearAll = async () => {
+  let a = await LoanRecordDao.deleteMany();
+  let b = await BookDao.updateMany(
+    {},
+    { $set: { records: [], status: "AVAILABLE" } }
+  );
+  let c = await LibraryCardDao.deleteMany();
+  let d = await UserDao.deleteMany();
+  console.log("deleted all loan records and library cards!");
 };

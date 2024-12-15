@@ -35,7 +35,7 @@ const LoginForm:React.FC<LoginFormProps> = ({toggleRegister}) => {
 
     return(
         <form action="" className="login-form">
-            <h2>Please Login</h2>
+            <h1>Please Login</h1>
             <div className="login-form-input-group">
                 <h6>Email</h6>
                 <input className='login-form-input' type='email' placeholder='email' name='email' required ref={emailRef}/>
