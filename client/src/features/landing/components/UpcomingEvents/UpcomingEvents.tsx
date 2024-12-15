@@ -5,15 +5,11 @@ const UpcomingEvents:React.FC = () => {
     return(
         <div className="upcoming-events">
             <div className="upcoming-events-header-group">
-                <AutoAwesome sx={{
-                    fontSize: "2.25rem",
-                    color: "#362647"
-                }} />
-             <h2>Upcoming Events</h2>
-                <AutoAwesome sx={{
-                    fontSize: "2.25rem",
-                    color: "#3626A7"
-                }} />
+            <div className="flex justify-evenly">
+                <AutoAwesome />
+                <p>Upcoming Events</p>
+                <AutoAwesome/>
+            </div>
             </div>
             <hr />
             <h3>This Summer</h3>

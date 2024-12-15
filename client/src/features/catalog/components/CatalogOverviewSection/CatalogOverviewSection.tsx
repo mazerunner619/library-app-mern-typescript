@@ -53,13 +53,11 @@ const CatalogOverviewSection: React.FC<CatalogOverviewSectionProps> = ({label}) 
 
     return(
         <div className="catalog-overview-section">
-            <div className="catalog-overview-section-top">
+            <div className="catalog-overview-section-top text-[color:--secondary] mb-2">
                 <h4>{label}</h4>
-                <p className="catalog-overview-section-more" onClick={handleViewMore}>View more...</p>
+                <p className="catalog-overview-section-more cursor-pointer" onClick={handleViewMore}>View more...</p>
             </div>
             {books && books.length > 0 &&
-
-
                 <div className="book-carousel">
                     <div className="book-carousel-left-button" onClick={moveLeft}>
                         <PlayArrowRounded style={{transform:"rotateZ(180deg)"}} />

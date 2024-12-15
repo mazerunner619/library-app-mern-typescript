@@ -31,15 +31,6 @@
     outline:none;
 }
 
-.login-form-submit {
-    width: 100%;
-    border: none;
-    background-color: var(--secondary);
-    border-radius: 5px;
-    margin-top: 16px;
-    color: white;
-}
-
 .login-form-submit:hover {
     cursor: pointer;
     box-shadow: var(--box-shadow);

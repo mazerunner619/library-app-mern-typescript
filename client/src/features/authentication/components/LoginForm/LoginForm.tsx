@@ -35,7 +35,8 @@ const LoginForm:React.FC<LoginFormProps> = ({toggleRegister}) => {
 
     return(
         <form action="" className="login-form">
-            <h1>Please Login</h1>
+            <span className='text-lg'>Please login!</span>
+            <hr className='py-2 border-1 border-slate-900 w-full' />
             <div className="login-form-input-group">
                 <h6>Email</h6>
                 <input className='login-form-input' type='email' placeholder='email' name='email' required ref={emailRef}/>
@@ -45,11 +46,12 @@ const LoginForm:React.FC<LoginFormProps> = ({toggleRegister}) => {
                 <input className='login-form-input' type='password' placeholder='password' name='password' required ref={passwordRef}/>
             </div>
             {error ? <p className='login-form-error'>{errorDetail}</p> : <></>}
-            <button className='login-form-submit' onClick={handleLogin}>Login</button>
-            <p>
+            <button className='bg-[color:--secondary] text-white mt-2 w-full px-2 rounded-full' onClick={handleLogin}>Login</button>
+            <div>
                 Don't have an account?
+                <br />
                 <span className='login-form-register' onClick={toggleRegister}>Create one here</span>
-            </p>
+            </div>
         </form>
     )
 }

@@ -7,12 +7,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(5px);
 }
 
 .modal{
     z-index: 5;
-    width: 30%;
+    min-width: 50%;
+    width: fit-content;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -21,7 +22,6 @@
     border-radius: 16px;
     box-shadow: var(--box-shadow);
     background-color: var(--background-primary);
-    /* position: sticky; */
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -33,4 +33,10 @@
 .modal-exit{
     align-self: flex-start;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .modal {
+    width: 90%;
+  }
 }

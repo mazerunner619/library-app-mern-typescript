@@ -3,6 +3,8 @@ import { BookInfo } from "../../../book"
 import "./BookOfTheWeek.css"
 import { Book } from "../../../../models/Book";
 import axios from "axios";
+import { AutoAwesome } from "@mui/icons-material"
+
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const BookOfTheWeek:React.FC = () => {
@@ -30,14 +32,18 @@ const BookOfTheWeek:React.FC = () => {
 
     return(
         <div className="book-of-the-week">
-            <h1>Book of the Week</h1>
+            <div className="flex justify-evenly">
+            <AutoAwesome />
+            <p>Trending Now</p>
+            <AutoAwesome/>
+            </div>
+            <hr className="mb-2"/>
             <hr />
             {
                 book ?
                 <>
                     <BookInfo book={book}/>
                     <a href={`/resource/${book.barcode}`} target="_blank">
-                        <button>have a look 👀</button>                    
                     </a>
                 </>
                 :

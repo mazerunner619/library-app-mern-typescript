@@ -6,7 +6,7 @@
 
 @layer components {
   .btn-menu {
-    @apply border-t border-white rounded-full px-2 py-1 shadow-lg hover:no-underline hover:text-white hover:text-opacity-90 hover:shadow-md;
+    @apply border-t border-white rounded-full px-2 shadow-lg hover:no-underline hover:text-white hover:text-opacity-90 hover:shadow-md;
   }
 }
 
@@ -26,6 +26,7 @@ body,
   width: 100%;
   height: 100%;
   font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
 }
 
 /* reset global css */
@@ -82,46 +83,6 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-/*
-  8. Create a root stacking context
-*/
-#root,
-#__next {
-  isolation: isolate;
-}
-/* 
-h1{
-  font-size: 3rem;
-  font-weight: 900;
-}
-  /*
-h2{
-  font-size: 2.5rem;
-  font-weight: 800;
-}
-
-h3{
-  font-size: 2.25rem;
-  font-weight: 700;
-}
-
-h4{
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-h5{
-  font-size: 1.75rem;
-  font-weight: 600;
-}
-
-
-h6{
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-*/
 
 p {
   font-size: 1.25rem;

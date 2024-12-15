@@ -3,6 +3,7 @@ import './Modal.css'
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/ReduxStore';
 import { setDisplayLibraryCard, setDisplayLoad, setDisplayLogin } from '../../redux/slices/ModalSlice';
+import HighlightOffTwoToneIcon from '@mui/icons-material/HighlightOffTwoTone';
 
 interface ModalProps {
     toggleModal(): void;
@@ -25,7 +26,9 @@ export const Modal:React.FC<ModalProps> = ({toggleModal, content}) => {
     return(
         <div className='modal-bg' onClick={closeModal}>
             <div className="modal">
-                <h5 className="modal-exit" onClick={toggleModal}>x</h5>
+                <h5 className="p-1 text-center cursor-pointer" onClick={toggleModal}><HighlightOffTwoToneIcon /></h5>
+                {/* <hr className='text-black w-1/2 mb-1'/> */}
+                <hr className='mb-2 border-1 w-1/2 border-slate-500' />
                 {content}
             </div>
         </div>

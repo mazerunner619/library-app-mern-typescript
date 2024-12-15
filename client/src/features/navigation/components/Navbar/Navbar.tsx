@@ -24,13 +24,6 @@ const Navbar:React.FC = () => {
         }
     }
 
-    const handleClickSearch = () => {
-        if(searchRef.current && searchRef.current.value.length > 0){
-            navigate(`/catalog?barcode=${searchRef.current.value}&title=${searchRef.current.value}&description=${searchRef.current.value}`);
-            searchRef.current.value='';
-        }
-    }
-
     const navigateToProfile = () => {
         if(authState.loggedInUser)
             navigate(`/profile/${authState.loggedInUser._id}`);
@@ -38,14 +31,6 @@ const Navbar:React.FC = () => {
 
     const toggleLogin = () => {
         dispatch(setDisplayLogin(true));
-    }
-
-    const toggleNavbarButton = () => {
-        // let toggle:HTMLElement = document.getElementById('navbarSupportedContent')!;
-        // if(toggle.classList.contains('collapse'))
-        //         toggle.classList.remove('collapse');
-        // else toggle.classList.add('collapse');
-        setShowMenu(!showMenu);
     }
 
     useEffect(() => {
@@ -73,17 +58,17 @@ const Navbar:React.FC = () => {
                                 Login
                             </div>
                         }
-                    </div>
+        </div>
     }
 
     return(
 
         <nav className="shadow-2xl bg-[color:--secondary] text-white md:text-lg p-2">
             
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center gap-x-2">
 
-            <div className="cursor-pointer flex gap-2">
-                <a href="/" className="hover:text-white hover:no-underline">
+            <div className="cursor-pointer flex flex-1 justify-between gap-2">
+                <a href="/" className="hover:text-white hover:no-underline px-2">
                     <LocalLibraryRounded sx={{transform:"rotateZ(15deg) translate(0, -1px)"}} />
                     <span className="ml-1">
                         Maezy's Library
@@ -94,18 +79,18 @@ const Navbar:React.FC = () => {
                 </div>
             </div>
             
-            <div className="gap-1 hidden md:flex cursor-pointer">
+            <div className="gap-2 hidden md:flex cursor-pointer">
                 <a className="btn-menu" href="/catalog">Catalog</a>
                     <LoginElement />
             </div>
 
-            <div onClick={toggleNavbarButton} className="md:hidden">
+            <div onClick={() => setShowMenu(!showMenu)} className="md:hidden">
                 <MenuIcon />
             </div>
             </div>
             {
                 showMenu && 
-                <div className="justify-end mt-3 cursor-pointer gap-1 flex md:hidden">
+                <div className="justify-end mt-3 cursor-pointer gap-2 flex md:hidden">
                     <a href="/catalog" className="btn-menu">Catalog</a>
                     <LoginElement />
                 </div>
