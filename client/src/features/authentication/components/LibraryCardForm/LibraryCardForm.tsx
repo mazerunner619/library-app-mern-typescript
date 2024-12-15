@@ -10,7 +10,7 @@ const LibraryCardForm = () => {
     const dispatch:AppDispatch = useDispatch();
     const userState = useSelector( (state:RootState) => state.auth);
     const [copied, setCopied] = useState(false);
-    let tm;
+    let tm:NodeJS.Timeout;
 
     const handleLogin = () => {
         dispatch(setDisplayLibraryCard(false));
@@ -28,7 +28,7 @@ const LibraryCardForm = () => {
         navigator.clipboard.writeText(copyText.innerHTML);
         setCopied(true);
         clearTimeout(tm);
-        setTimeout(() => setCopied(false), 1000)
+        tm = setTimeout(() => setCopied(false), 1000)
     }
 
     return(
