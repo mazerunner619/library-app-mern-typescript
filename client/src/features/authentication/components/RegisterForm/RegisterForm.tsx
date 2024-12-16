@@ -40,7 +40,6 @@ export const RegisterForm:React.FC<RegisterFormProps> = ({toggleLogin}) => {
     return(
         <form className="login-form">
             <span className='text-lg'>Please Register!</span>
-            <hr className='py-2 border-1 border-slate-900 w-full' />
             <div className="login-form-input-group">
                 <h6>First Name</h6>
                 <input className='login-form-input' type='text' placeholder='first name' name='firstname' required ref={firstRef}/>

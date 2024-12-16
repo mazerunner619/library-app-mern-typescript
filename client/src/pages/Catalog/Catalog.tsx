@@ -9,7 +9,7 @@ import React, { useEffect } from "react";
         console.log("Atif => ", location)
     }, [])
      return(
-        <div className="page">
+        <div className="page text-sm md:text-lg">
             <div className="page-container">
                 {
                     location.search === "" ? 

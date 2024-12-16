@@ -4,7 +4,7 @@ import './HomePage.css'
 export default function HomePage():JSX.Element{
 
     return(
-        <div className="page">
+        <div className="page text-sm md:lg">
             <div className="homepage-container">
                 <div className="homepage-left">
                     <BookOfTheWeek />

@@ -9,7 +9,6 @@ import {
 } from "../services/BookService";
 import BookDao from "../daos/BookDao";
 import fs from "fs";
-import { IBook } from "../models/Book";
 import { BookDoesNotExistError } from "../utils/LibraryErrors";
 
 export const getAllBooksByLimit = async (req: Request, res: Response) => {

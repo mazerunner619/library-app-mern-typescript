@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar:React.FC = () => {
 
-    const searchItems = ['Harry Potter', 'romance', 'mystery', 'Rebecca'];
+    const searchItems = ['title', 'barcode', 'author', 'harry potter', 'J.K. Rowling', 'Dune', 'Hobbit', 'Ali Hazelwood'];
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const searchRef = useRef<HTMLInputElement>(null);
     const authState = useSelector( (state:RootState) => state.auth);
@@ -19,7 +19,7 @@ const Navbar:React.FC = () => {
 
     const handleEnterSearch = (e:React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key == "Enter" && searchRef.current && searchRef.current.value.length > 0){
-            navigate(`/catalog?barcode=${searchRef.current.value}&title=${searchRef.current?.value}&description=${searchRef.current.value}`);
+            navigate(`/catalog?barcode=${searchRef.current.value}&title=${searchRef.current?.value}&author=${searchRef.current.value}`);
             searchRef.current.value='';
         }
     }
@@ -74,25 +74,30 @@ const Navbar:React.FC = () => {
                         Maezy's Library
                     </span>
                 </a>
-                <div>
+                <div className="hidden sm:block">
                     <input className="focus:shadow-xl focus:outline-none text-slate-600 px-2 rounded-full" type="search" placeholder={"... "+searchItems[placeholderIndex]} aria-label="Search" ref={searchRef} onKeyDown={handleEnterSearch}/>
                 </div>
             </div>
             
-            <div className="gap-2 hidden md:flex cursor-pointer">
+            <div className="gap-2 hidden sm:flex cursor-pointer">
                 <a className="btn-menu" href="/catalog">Catalog</a>
                     <LoginElement />
             </div>
 
-            <div onClick={() => setShowMenu(!showMenu)} className="md:hidden">
+            <div onClick={() => setShowMenu(!showMenu)} className="sm:hidden">
                 <MenuIcon />
             </div>
             </div>
             {
                 showMenu && 
-                <div className="justify-end mt-3 cursor-pointer gap-2 flex md:hidden">
-                    <a href="/catalog" className="btn-menu">Catalog</a>
-                    <LoginElement />
+                <div className="justify-end mt-2 cursor-pointer flex-col justify-items-end sm:hidden">
+                <div className="my-2 w-full">
+                    <input className="w-full focus:shadow-xl focus:outline-none text-slate-600 px-2 rounded-full" type="search" placeholder={"... "+searchItems[placeholderIndex]} aria-label="Search" ref={searchRef} onKeyDown={handleEnterSearch}/>
+                </div>
+                    <div className="flex">
+                        <a href="/catalog" className="btn-menu">Catalog</a>
+                        <LoginElement />
+                    </div>
                 </div>
             }
         </nav>

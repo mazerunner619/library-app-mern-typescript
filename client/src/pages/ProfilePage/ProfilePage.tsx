@@ -24,7 +24,7 @@ const ProfilePage:React.FC = () => {
     }, [userId]);
     
     return(
-        <div className="page">
+        <div className="page text-sm md:text-lg">
             <div className="page-container">
                 <h1 className="text-center text-2xl mb-2 bg-green-200 rounded-full w-full">{profileUser && `${profileUser.firstName}'s Profile`}</h1>
                 {

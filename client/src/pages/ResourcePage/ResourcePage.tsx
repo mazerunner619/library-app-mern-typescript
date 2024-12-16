@@ -25,7 +25,7 @@ const ResourcePage = () => {
     },[bookState.error, barcode]);
 
     return(
-        <div className="page">
+        <div className="page text-sm md:text-lg">
             <div className="page-container">
                 <BookOverview />
             </div>

@@ -3,7 +3,7 @@ import "./UpcomingEvents.css"
 
 const UpcomingEvents:React.FC = () => {
     return(
-        <div className="upcoming-events">
+        <div className="upcoming-events text-sm md:text-lg">
             <div className="upcoming-events-header-group">
             <div className="flex justify-evenly">
                 <AutoAwesome />

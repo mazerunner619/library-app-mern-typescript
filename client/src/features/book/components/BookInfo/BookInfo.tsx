@@ -15,7 +15,7 @@ export const BookInfo:React.FC<BookInfoProps> = ({book}) => {
                     <h1></h1>
                     <h2 className='text-xl'><a className='hover:text-white' href={`/resource/${book.barcode}`} target='_blank'>{book.title} 👀</a></h2>
                     <h3>{mapAuthorsToString(book)}</h3>
-                    <p className='book-description'>{book.description}</p>
+                    <p className='book-description text-sm md:text-lg'>{book.description}</p>
             </div>
     )
 }
