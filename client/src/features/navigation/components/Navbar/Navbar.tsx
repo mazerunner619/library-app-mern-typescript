@@ -96,6 +96,7 @@ const Navbar:React.FC = () => {
                 showMenu && 
                 <div className="justify-end mt-2 cursor-pointer flex-col justify-items-end sm:hidden">
                 <div className="my-2 w-full">
+                <SearchIcon sx={{color:"grey"}}/>
                     <input className="w-full focus:shadow-xl focus:outline-none text-slate-600 px-2 rounded-full" type="search" placeholder={"... "+searchItems[placeholderIndex]} aria-label="Search" ref={searchRef} onKeyDown={handleEnterSearch}/>
                 </div>
                     <div className="flex">

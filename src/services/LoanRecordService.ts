@@ -6,6 +6,7 @@ import {
   BookDoesNotExistError,
   LoanRecordNotExistError,
 } from "../utils/LibraryErrors";
+import { deleteKey, getOrSetCache } from "../utils/RedisClent";
 import { findBookById } from "./BookService";
 
 export const generateRecord = async (
@@ -21,6 +22,8 @@ export const generateRecord = async (
     book.records.unshift(`${newRecord._id}`);
     book.status = "LOANED";
     await book.save();
+    await deleteKey(`lrec-lib:patron-${record.patron}`);
+    await deleteKey(`lrec-lib:item-${record.item}`);
     return newRecord;
   } catch (error: any) {
     throw error;
@@ -40,7 +43,11 @@ export const modifyRecord = async (
       { _id: record.item },
       { $set: { status: record.status } }
     );
-    if (updatedRecord) return updatedRecord;
+    if (updatedRecord) {
+      await deleteKey(`lrec-lib:patron-${record.patron}`);
+      await deleteKey(`lrec-lib:item-${record.item}`);
+      return updatedRecord;
+    }
     throw new LoanRecordNotExistError("loan record does not exist");
   } catch (error: any) {
     throw error;
@@ -60,9 +67,18 @@ export const queryRecords = async (param: {
   value: string | Date;
 }): Promise<ILoanRecordModel[]> => {
   try {
-    return await LoanRecordDao.find({ [param.property]: param.value })
-      .sort("-loanedDate")
-      .populate({ path: "item", select: "title" });
+    const redisKey = `lrec-lib:${param.property}-${param.value}`;
+    if (param.property !== "_id") {
+      return await getOrSetCache<ILoanRecordModel[]>(redisKey, async () => {
+        return await LoanRecordDao.find({ [param.property]: param.value })
+          .sort("-loanedDate")
+          .populate({ path: "item", select: "title" });
+      });
+    } else {
+      return await LoanRecordDao.find({ [param.property]: param.value })
+        .sort("-loanedDate")
+        .populate({ path: "item", select: "title" });
+    }
   } catch (error: any) {
     throw error;
   }
