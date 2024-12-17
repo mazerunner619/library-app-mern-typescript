@@ -16,6 +16,7 @@ const BookCheckin: React.FC = () => {
 
         e.preventDefault();
         if (book && user && libraryCardRef) {
+            console.log('checkin book =---> ', book)
             dispatch(checkinBook({
                 book,
                 employee:user,

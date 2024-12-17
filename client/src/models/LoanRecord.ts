@@ -13,6 +13,10 @@ export type LoanRecord = {
   item: { title: string };
 };
 
+export type LoanRecordItemWithIdAndTitle = Omit<LoanRecord, "item"> & {
+  item: { _id: string; title: string };
+};
+
 export type CheckoutBookPayload = {
   book: Book;
   libraryCard: string;

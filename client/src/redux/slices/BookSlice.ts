@@ -5,6 +5,7 @@ import { PageInfo } from "../../models/Page";
 import {
   CheckinBookPayload,
   CheckoutBookPayload,
+  LoanRecordItemWithIdAndTitle,
 } from "../../models/LoanRecord";
 import { LoanRecord } from "../../models/LoanRecord";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -65,7 +66,7 @@ export const checkinBook = createAsyncThunk(
         property: "_id",
         value: payload.book.records[0],
       });
-      const loanRecord: LoanRecord = result.data.records[0];
+      const loanRecord: LoanRecordItemWithIdAndTitle = result.data.records[0];
       const record = {
         _id: loanRecord._id,
         status: "AVAILABLE",
@@ -75,7 +76,7 @@ export const checkinBook = createAsyncThunk(
         patron: loanRecord.patron,
         employeeOut: loanRecord.employeeOut,
         employeeIn: payload.employee._id,
-        item: loanRecord.item,
+        item: loanRecord.item._id,
       };
       result = await axios.put(BASE_URL + "/api/record", record);
       return result.data.record;
