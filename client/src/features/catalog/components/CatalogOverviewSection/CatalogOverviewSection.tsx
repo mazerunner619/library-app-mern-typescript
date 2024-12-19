@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import './CatalogOverviewSection.css';
 import { Book } from '../../../../models/Book';
@@ -16,6 +16,8 @@ const CatalogOverviewSection: React.FC<CatalogOverviewSectionProps> = ({label}) 
 
     const [books, setBooks] = useState<Book[]>([]);
     const [error, setError] = useState<string>("");
+    const [bookInView, setBookInView] = useState<number>(0);
+    const bookLen = useMemo(() => books.length, [books]);
 
     const handleViewMore = () => {
         navigate(`/catalog?genre=${label}&subject=${label}`);
@@ -38,36 +40,32 @@ const CatalogOverviewSection: React.FC<CatalogOverviewSectionProps> = ({label}) 
     }, [label]);
 
     const moveLeft = () => {
-        let item = books[0];
-        let reordered = books.slice(1);
-        reordered.push(item);
-        setBooks(reordered);
+        setBookInView(prev => (prev-1+bookLen)%bookLen);
     }
 
     const moveRight = () => {
-        let item = books[books.length-1];
-        let reordered =  books.slice(0, books.length - 1);
-        reordered = [item, ...reordered];
-        setBooks(reordered);
+        setBookInView(prev => (prev+1)%bookLen);
     }
 
     return(
-        <div className="catalog-overview-section">
-            <div className="catalog-overview-section-top text-[color:--secondary] mb-2">
-                <h4>{label}</h4>
-                <p className="catalog-overview-section-more cursor-pointer" onClick={handleViewMore}>View more...</p>
-            </div>
+        <div className="w-[90vw] overflow-hidden mt-2 mx-auto">
             {books && books.length > 0 &&
-                <div className="book-carousel">
-                    <div className="book-carousel-left-button" onClick={moveLeft}>
+                <div className="relative flex justify-around items-center my-2">
+                    <div className='absolute top-0 bg-green-600 text-white p-2 rounded-xl flex justify-between w-full'>
+                    <h4 className="">{label}</h4>
+                    <h4 className="" onClick={handleViewMore}>
+                        View more...
+                    </h4>
+                    </div>
+                    <div className="" onClick={moveLeft}>
                         <PlayArrowRounded style={{transform:"rotateZ(180deg)"}} />
                     </div>
-                    <div className="book-carousel-right-button" onClick={moveRight}>
+                    <div className='z-50'>
+                        <BookCard key={books[bookInView]._id} book={books[bookInView]}/>
+                    </div>
+                    <div className="" onClick={moveRight}>
                         <PlayArrowRounded />
                     </div>
-                    {
-                        books.map( book => <BookCard key={book._id} book={book}/>)
-                    }
                 </div>
             }
             {error !== "" && <p>{error}</p>}

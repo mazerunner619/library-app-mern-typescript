@@ -10,8 +10,8 @@ const Component:React.FC = () => {
     
     return(
         <>
-            <div className="catalog-overview">
-                <h4>Browse our selected books below, or search for something </h4>
+            <div className="catalog-overview mx-auto">
+                <h4 className="">Browse our selected books below! or search for something </h4>
                 {
                     genres.map( genre => {
                         return <CatalogOverviewSection 

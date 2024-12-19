@@ -24,6 +24,7 @@ const Navbar:React.FC = () => {
         if(e.key == "Enter" && searchRef.current && searchRef.current.value.length > 0){
             navigate(`/catalog?barcode=${searchRef.current.value}&title=${searchRef.current?.value}&author=${searchRef.current.value}`);
             searchRef.current.value='';
+            searchRef.current.blur();
         }
     }
 
@@ -95,9 +96,9 @@ const Navbar:React.FC = () => {
             {
                 showMenu && 
                 <div className="justify-end mt-2 cursor-pointer flex-col justify-items-end sm:hidden">
-                <div className="my-2 w-full">
+                <div className="my-2 w-full flex bg-white rounded-full p-1">
                 <SearchIcon sx={{color:"grey"}}/>
-                    <input className="w-full focus:shadow-xl focus:outline-none text-slate-600 px-2 rounded-full" type="search" placeholder={"... "+searchItems[placeholderIndex]} aria-label="Search" ref={searchRef} onKeyDown={handleEnterSearch}/>
+                    <input className="w-full focus:shadow-xl focus:outline-none text-slate-600" type="search" placeholder={"... "+searchItems[placeholderIndex]} aria-label="Search" ref={searchRef} onKeyDown={handleEnterSearch}/>
                 </div>
                     <div className="flex">
                         <a className="btn-menu" href="/catalog"><AppsIcon />{' '}Catalog</a>

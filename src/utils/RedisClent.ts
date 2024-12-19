@@ -33,17 +33,14 @@ export const getOrSetCache = async <T>(key: string, cb: () => Promise<T>) => {
       console.log("cache hit!");
       return JSON.parse(cachedData) as T;
     }
-    console.log("cache miss, fetching from database!");
     const data = await cb();
     await client.setEx(key, DEFAULT_CACHE_EXPIRY, JSON.stringify(data));
     return data;
   } catch (error) {
-    console.log("redis getorset error: ", error);
     throw error;
   }
 };
 
 export const deleteKey = async (key: string) => {
   const deletekeyres = await client.del(key);
-  // console.log(deletekeyres);
 };
