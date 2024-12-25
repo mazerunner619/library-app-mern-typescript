@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import "./CatalogAdvancedSearch.css"
 import { useNavigate } from "react-router-dom";
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import { truncate } from "node:fs";
 
 const CatalogAdvancedSearch:React.FC = () => {
     const navigate = useNavigate();
