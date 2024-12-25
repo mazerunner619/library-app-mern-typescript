@@ -20,8 +20,8 @@ const CatalogSearch:React.FC = () => {
     }, [location.search]);
 
     return(
-        <div className="catalog-search">
-            <div className="catalog-search-advanced-search-section">
+        <div className="catalog-search min-h-screen">
+            <div className="w-full catalog-search-advanced-search-section">
                 <CatalogAdvancedSearch />
             </div>
             {

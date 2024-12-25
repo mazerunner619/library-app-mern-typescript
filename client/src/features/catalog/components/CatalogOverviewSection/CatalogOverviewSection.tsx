@@ -60,7 +60,7 @@ const CatalogOverviewSection: React.FC<CatalogOverviewSectionProps> = ({label}) 
                     <div className="" onClick={moveLeft}>
                         <PlayArrowRounded style={{transform:"rotateZ(180deg)"}} />
                     </div>
-                    <div className='z-50'>
+                    <div className=''>
                         <BookCard key={books[bookInView]._id} book={books[bookInView]}/>
                     </div>
                     <div className="" onClick={moveRight}>

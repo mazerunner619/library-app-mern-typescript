@@ -1,4 +1,3 @@
-import "./CatalogOverview.css"
 import { useState } from "react";
 import { generateRandomGenres } from "../../utils/CatalogUtils";
 import CatalogOverviewSection from "../CatalogOverviewSection/CatalogOverviewSection";
@@ -10,7 +9,7 @@ const Component:React.FC = () => {
     
     return(
         <>
-            <div className="catalog-overview mx-auto">
+            <div className="catalog-overview mx-auto min-h-screen">
                 <h4 className="">Browse our selected books below! or search for something </h4>
                 {
                     genres.map( genre => {

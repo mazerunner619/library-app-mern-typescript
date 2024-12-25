@@ -8,6 +8,10 @@
   .btn-menu {
     @apply border-t border-white rounded-full px-2 shadow-lg hover:no-underline hover:text-white hover:text-opacity-90 hover:shadow-md;
   }
+
+  .search-menu-input {
+    @apply rounded-full px-2 hover:shadow-lg focus:shadow-lg;
+  }
 }
 
 :root {
@@ -19,7 +23,6 @@
   --secondary: #0dab76;
   --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-
 /* html,
 body,
 #root {

@@ -29,16 +29,7 @@
     height: 2rem;
     font-size: 0.8rem;
     font-weight: 400;
-    display: flex;
-    padding-top: 2px;
-    padding-left: 8px;
-    border: 2px solid var(--primary);
-    border-radius: 8px;
-}
-
-
-.catalog-advanced-form-input:focus{
- outline: none;
+    outline: none;
 }
 
 .catalog-advanced-form-input::placeholder{
@@ -50,7 +41,7 @@
 .catalog-advanced-search-button{
     background-color: var(--secondary);
     color: white;
-    width: 25%;
+    width: fit-content;
     height: 2rem;
     border: none;
     cursor: pointer;

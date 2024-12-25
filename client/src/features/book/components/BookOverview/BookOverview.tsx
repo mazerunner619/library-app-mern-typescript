@@ -11,7 +11,7 @@ const BookOverview = () => {
     const user = useSelector((state:RootState) => state.auth.loggedInUser);
 
     return(
-        <div className="book-overview">
+        <div className="book-overview min-h-screen">
             {
                 bookState.currentBook && !bookState.loading && 
                 <>

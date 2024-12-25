@@ -1,6 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./CatalogAdvancedSearch.css"
 import { useNavigate } from "react-router-dom";
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import { truncate } from "node:fs";
 
 const CatalogAdvancedSearch:React.FC = () => {
     const navigate = useNavigate();
@@ -12,8 +14,8 @@ const CatalogAdvancedSearch:React.FC = () => {
     const subjectRef = useRef<HTMLInputElement>(null);
     const descriptionRef = useRef<HTMLInputElement>(null);
 
-    const handleSearch = () => {
-
+    const handleSearch = (e:any) => {
+        e.preventDefault();
         let query = '';
         if(isbnRef && isbnRef.current && isbnRef.current.value !== '')
             query += `&barcode=${isbnRef.current.value}`;
@@ -35,33 +37,35 @@ const CatalogAdvancedSearch:React.FC = () => {
         }
     }
 
+    const [showFilter, setShowFilter] = useState<boolean>(false);
+
     return(
-        <div className="catalog-advanced-search">
-            <h2>Advanced Book Search</h2>
-            <form className="catalog-advanced-search-form">
-                <div className="catalog-advanced-form-input-group">
-                    <p>ISBN</p>
-                    <input id="isbn" placeholder="ISBN" ref={isbnRef} className="catalog-advanced-form-input" />
-                </div>
-                <div className="catalog-advanced-form-input-group">
-                    <p>Title</p>
-                    <input id="title" placeholder="Title" ref={titleRef} className="catalog-advanced-form-input" />
-                </div>
-                <div className="catalog-advanced-form-input-group">
-                    <p>Author</p>
-                    <input id="author" placeholder="Author" ref={authorRef} className="catalog-advanced-form-input" />
-                </div>
-                <div className="catalog-advanced-form-input-group">
-                    <p>Description</p>
-                    <input id="description" placeholder="Description" ref={descriptionRef} className="catalog-advanced-form-input" />
-                </div>
-                <div className="catalog-advanced-form-input-group">
-                    <p>Genre</p>
-                    <input id="genre" placeholder="Genre" ref={genreRef} className="catalog-advanced-form-input" />
-                </div>
-            </form>
-            <button className="catalog-advanced-search-button" onClick={handleSearch}>Search</button>
+        <>
+            <p className="text-slate-500 mb-2 text-center">Advanced Book Search</p>
+        <div onClick={() => {setShowFilter(!showFilter)}} className="mb-1 cursor-pointer active:shadow-lg px-2 float-right md:hidden text-slate-500">
+            <FilterAltOutlinedIcon /> FILTER       
         </div>
+        <div className={showFilter ? "block":"hidden md:block"}>
+            <form autoComplete="off" className="md:flex md:justify-evenly md:gap-x-1">
+                <div className="mb-1">
+                    <input id="isbn" placeholder="ISBN" ref={isbnRef} className="catalog-advanced-form-input search-menu-input" />
+                </div>
+                <div className="mb-1">
+                    <input id="title" placeholder="Title" ref={titleRef} className="catalog-advanced-form-input search-menu-input" />
+                </div>
+                <div className="mb-1">
+                    <input id="author" placeholder="Author" ref={authorRef} className="catalog-advanced-form-input search-menu-input" />
+                </div>
+                <div className="mb-1">
+                    <input id="description" placeholder="Description" ref={descriptionRef} className="catalog-advanced-form-input search-menu-input" />
+                </div>
+                <div className="mb-1">
+                    <input id="genre" placeholder="Genre" ref={genreRef} className="catalog-advanced-form-input search-menu-input" />
+                </div>
+                <button className="catalog-advanced-search-button px-3 rounded-full" onClick={(e) => handleSearch(e)}>Search</button>
+            </form>
+        </div>
+        </>
     )
 
 }

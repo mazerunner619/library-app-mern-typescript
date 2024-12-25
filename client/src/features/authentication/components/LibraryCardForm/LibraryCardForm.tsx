@@ -55,7 +55,7 @@ const LibraryCardForm = () => {
             <div className="register-library-card-container">
                 <h3 className="register-library-card-text">You must be a member of Library to get a card!</h3>
                 <h4 className="register-library-card-text">Use the button below to register yourself for free or login</h4>
-                <button className="register-library-modal-button" onClick={handleLogin}>New here?</button>
+                <button className="register-library-modal-button text-blue-700" onClick={handleLogin}>New here?</button>
             </div>
         }
         </>
