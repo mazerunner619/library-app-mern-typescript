@@ -36,7 +36,7 @@ const ProfileLoanHistory = () => {
 
     return(
         <div className="profile-loan-history">
-        <h3 className="profile-loan-header">{user?.firstName}'s Item Loan History:</h3>
+        <h1 className="text-2xl text-center my-2 border-t-2 bg-red-200">Loan History</h1>
         {
             records.map((record)=> {
             return(

@@ -29,11 +29,11 @@ const ProfilePage:React.FC = () => {
                 <h1 className="text-center text-2xl mb-2 bg-green-200 rounded-full w-full">{profileUser && `${profileUser.firstName}'s Profile`}</h1>
                 {
                     profileUser && 
-                    <div className="profile-page-cols">
-                    <div className="profile-page-left-column">
+                <div className="mx-auto w-full md:flex md:justify-around gap-2">
+                    <div className="shadow-lg p-2 rounded-lg min-w-fit">
                         <UpdateUserForm />
                     </div>
-                    <div className="profile-page-right-column">
+                    <div className="shadow-lg p-1">
                         {
                             profileUser && <ProfileLoanHistory />
                         }

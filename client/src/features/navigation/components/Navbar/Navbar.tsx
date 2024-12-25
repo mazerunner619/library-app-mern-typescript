@@ -67,7 +67,7 @@ const Navbar:React.FC = () => {
 
     return(
 
-        <nav className="shadow-2xl bg-[color:--secondary] text-white md:text-lg py-3 px-2">
+        <nav className="shadow-2xl bg-[color:--secondary] text-white md:text-lg py-2 px-2">
             
             <div className="flex justify-between items-center gap-x-2">
 

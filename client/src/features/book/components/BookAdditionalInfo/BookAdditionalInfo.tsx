@@ -8,24 +8,20 @@ interface BookAdditionalInfoProps{
 
 const BookAdditionalInfo:React.FC<BookAdditionalInfoProps> = ({book}) => {
     return(
-        <div className="additional-book-info">
-            <h2>Additional Information about: {book.title}</h2>
-            <div className="additional-book-info-container">
-                <div className="additional-book-info-group">
-                    <h4 className="additional-book-info-text">Published By:</h4>
-                    <p className="additional-book-info-text">{book.publisher}</p>
+        <div className="h-fit additional-book-info">
+                    <p className="sm:text-center my-2 border-b-2 p-2">Publisher: {book.publisher}</p>
+            <div className="gap-y-2 gap-2 additional-book-info-container flex-col md:flex-row">
+            <div className="w-full items-start additional-book-info-group gap-y-2">
+                    <p className="additional-book-info-text">ISBN:</p>
+                    <h4 className="additional-book-info-text">{book.barcode}</h4>
                 </div>
-                <div className="additional-book-info-group">
-                    <h4 className="additional-book-info-text">Published On:</h4>
-                    <p className="additional-book-info-text">{new Date(book.publicationDate).toDateString()}</p>
+                <div className="w-full items-start additional-book-info-group gap-y-2">
+                    <p className="additional-book-info-text">Pages:</p>
+                    <h4 className="additional-book-info-text">{book.pages}</h4>
                 </div>
-                <div className="additional-book-info-group">
-                    <h4 className="additional-book-info-text">ISBN:</h4>
-                    <p className="additional-book-info-text">{book.barcode}</p>
-                </div>
-                <div className="additional-book-info-group">
-                    <h4 className="additional-book-info-text">Pages:</h4>
-                    <p className="additional-book-info-text">{book.pages}</p>
+                <div className="w-full items-start additional-book-info-group gap-y-2">
+                    <p className="additional-book-info-text">Published On:</p>
+                    <h4 className="additional-book-info-text">{new Date(book.publicationDate).toDateString()}</h4>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ const LayoutPage:React.FC = () => {
     const state = useSelector( (state:RootState) => state.modal);
 
     return(
-        <div className="layout-page">
+        <div className="layout-page min-w-fit">
             {state.displayLogin && <LoginRegisterModal />}
             {state.displayLibraryCard && <LibraryCardModal />}
             {state.displayLoad && <LoanBookModal />}

@@ -26,10 +26,16 @@ const UpdateUserForm:React.FC = () => {
         }
     }
 
-    const submitUpdateUser = (e:React.MouseEvent<HTMLButtonElement>) => {
+    const submitUpdateUser = async(e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if(user)dispatch(updateUser(user));
-        setDisplayUpdate(false);
+        try {
+            if(user)
+                await dispatch(updateUser(user));
+            setDisplayUpdate(false);
+            alert('updated!')
+        } catch (error) {
+            alert('opps! something is wrong')
+        }
     }
 
     const logout = (e:React.MouseEvent<HTMLButtonElement>) => {
