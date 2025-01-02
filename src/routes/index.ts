@@ -5,6 +5,7 @@ import userRoutes from "./UserRoutes";
 import bookRoutes from "./BookRoutes";
 import libraryCardRoutes from "./LibraryCardRoutes";
 import loanRecordRoutes from "./LoanRecordRoutes";
+import { getBookOftheWeek } from "../controllers/BookController";
 
 export const registerRoutes = (app: Express) => {
   app.get("/", (req: Request, res: Response) => {
@@ -15,4 +16,5 @@ export const registerRoutes = (app: Express) => {
   app.use("/api/book", bookRoutes);
   app.use("/api/card", libraryCardRoutes);
   app.use("/api/record", loanRecordRoutes);
+  app.get("/api/book-of-the-week", getBookOftheWeek);
 };
