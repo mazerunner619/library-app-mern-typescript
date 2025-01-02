@@ -10,7 +10,6 @@ import {
   BookDoesNotExistError,
   LoanRecordNotExistError,
 } from "../utils/LibraryErrors";
-import LoanRecordDao from "../daos/LoanRecordDao";
 
 export const createRecord = async (req: Request, res: Response) => {
   let record = req.body;

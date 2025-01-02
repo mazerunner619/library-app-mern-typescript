@@ -10,6 +10,7 @@ import {
 import BookDao from "../daos/BookDao";
 import fs from "fs";
 import { BookDoesNotExistError } from "../utils/LibraryErrors";
+import { getOrSetCache } from "../utils/RedisClent";
 
 export const getAllBooksByLimit = async (req: Request, res: Response) => {
   const { limit = 10, page = 1, totalCount = -1 } = req.query;
@@ -76,19 +77,19 @@ export const createBook = async (req: Request, res: Response) => {
   }
 };
 
-export const insertManyBooks = async (req: Request, res: Response) => {
-  try {
-    const books: any = await fs.promises.readFile("./books.json", {
-      encoding: "utf-8",
-      flag: "r",
-    });
-    const booksArray = JSON.parse(books);
-    let op = await BookDao.insertMany(booksArray);
-    res.status(200).json({ message: "books inserted" });
-  } catch (error: any) {
-    res.status(500).json({ message: "could not insert books", error });
-  }
-};
+// export const insertManyBooks = async (req: Request, res: Response) => {
+//   try {
+//     const books: any = await fs.promises.readFile("./books.json", {
+//       encoding: "utf-8",
+//       flag: "r",
+//     });
+//     const booksArray = JSON.parse(books);
+//     let op = await BookDao.insertMany(booksArray);
+//     res.status(200).json({ message: "books inserted" });
+//   } catch (error: any) {
+//     res.status(500).json({ message: "could not insert books", error });
+//   }
+// };
 
 export const searchForBooksQuery = async (req: Request, res: Response) => {
   try {
@@ -128,4 +129,36 @@ export const getBookByid = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).json({ message: "could not fetch books", error });
   }
+};
+
+export const getBookOftheWeek = async (req: Request, res: Response) => {
+  const botw_id = await getOrSetCache<string>(
+    "lib-botw",
+    async () => {
+      let result = await BookDao.aggregate([
+        {
+          $addFields: {
+            recordCount: { $size: "$records" },
+          },
+        },
+        {
+          $sort: {
+            recordCount: -1,
+          },
+        },
+        {
+          $limit: 1,
+        },
+        {
+          $project: {
+            _id: 1,
+          },
+        },
+      ]);
+      return result[0];
+    },
+    7 * 24 * 60 * 60 // 7 days
+  );
+  const botw = await BookDao.findById(botw_id);
+  return res.json(botw);
 };
