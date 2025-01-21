@@ -8,9 +8,9 @@ import loanRecordRoutes from "./LoanRecordRoutes";
 import { getBookOftheWeek } from "../controllers/BookController";
 
 export const registerRoutes = (app: Express) => {
-  app.get("/", (req: Request, res: Response) => {
-    res.status(200).json({ message: "server running properly" });
-  });
+  // app.get("/", (req: Request, res: Response) => {
+  //   res.status(200).json({ message: "server running properly" });
+  // });
   app.use("/api/auth", authRoutes);
   app.use("/api/user", userRoutes);
   app.use("/api/book", bookRoutes);

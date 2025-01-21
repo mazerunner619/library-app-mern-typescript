@@ -13,7 +13,14 @@ app.use(
     origin: config.server.origin,
   })
 );
+
+app.use(express.static(path.resolve(__dirname, "../build")));
+
 registerRoutes(app);
+
+app.get("*", (req: any, res: any) => {
+  res.sendFile(path.resolve(__dirname, "../build", "index.html"));
+});
 
 export const connectDataBase = async () => {
   try {
@@ -27,12 +34,5 @@ export const connectDataBase = async () => {
     console.log("db connection issue: ", error);
   }
 };
-
-// if (process.env.NODE_ENV == "production") {
-//   app.use(express.static(path.join(__dirname, "../client", "dist")));
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "../client", "dist", "index.html"));
-//   });
-// }
 
 export default app;
