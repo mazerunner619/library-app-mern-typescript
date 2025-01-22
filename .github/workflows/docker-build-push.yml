@@ -25,8 +25,8 @@ jobs:
       - name: build frontend
         uses: docker/build-push-action@v6
         with:
-          push: false
-          tags: library-app-client
+          push: true
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/library-app-frontend:latest
           context: client
 
       - name: build backend and push
