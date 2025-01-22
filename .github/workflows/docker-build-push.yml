@@ -34,3 +34,11 @@ jobs:
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/library-app:latest
           context: server
+
+      - name: deploy latest library-app image to render
+        if: github.ref == 'refs/heads/main'
+        env:
+          deploy_url: ${{secrets.RENDER_DEPLOY_HOOK_URL}}
+        run: |
+          echo "Deploying application on render..."
+          curl "$deploy_url"
