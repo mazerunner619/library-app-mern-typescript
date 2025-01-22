@@ -22,9 +22,17 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: build image from docker-compose
-        run: docker-compose build
+      - name: build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/app:latest
+          context: client
+
+      # - name: build image from docker-compose
+      #   run: docker-compose build
+
         
-      - name: push the image
-        run: docker push ${{ vars.DOCKERHUB_USERNAME }}/library-app:latest
+      # - name: push the image
+      #   run: docker push ${{ vars.DOCKERHUB_USERNAME }}/library-app:latest
           
