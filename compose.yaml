@@ -5,7 +5,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     container_name: client 
-    image: library-app-client # to name the image after build and use inside docker file of server to copy dist folder
+    image: rmysterio445/library-app-client:latest # to name the image after build and use inside docker file of server to copy dist folder
 
   server:
     build:
