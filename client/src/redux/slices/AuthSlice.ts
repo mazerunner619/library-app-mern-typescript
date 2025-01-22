@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { LoginUserPayload, RegisterUserPayload, User } from "../../models/User";
 import axios from "axios";
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+// const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 interface FetchUserPayload {
   userId: string;
@@ -32,7 +32,7 @@ export const loginUser = createAsyncThunk(
   "auth/login",
   async (user: LoginUserPayload, thunkApi) => {
     try {
-      const { data } = await axios.post(BASE_URL + "/api/auth/login", user);
+      const { data } = await axios.post("/api/auth/login", user);
       return data.user;
     } catch (error: any) {
       if (error.response?.data?.message)
@@ -46,7 +46,7 @@ export const registerUser = createAsyncThunk(
   "auth/register",
   async (user: RegisterUserPayload, thunkApi) => {
     try {
-      const { data } = await axios.post(BASE_URL + "/api/auth/register", user);
+      const { data } = await axios.post("/api/auth/register", user);
       return data.user;
     } catch (error: any) {
       if (error.response?.data?.message)
@@ -60,7 +60,7 @@ export const fetchUser = createAsyncThunk(
   "auth/fetch",
   async (user: FetchUserPayload, thunkApi) => {
     try {
-      const { data } = await axios.get(BASE_URL + `/api/user/${user.userId}`);
+      const { data } = await axios.get(`/api/user/${user.userId}`);
       return {
         user: data.user,
         property: user.property,
@@ -77,7 +77,7 @@ export const updateUser = createAsyncThunk(
   "auth/update",
   async (user: User, thunkApi) => {
     try {
-      const { data } = await axios.put(BASE_URL + `/api/user`, user);
+      const { data } = await axios.put(`/api/user`, user);
       return data.upadtedUser;
     } catch (error: any) {
       if (error.response?.data?.message)
@@ -91,7 +91,7 @@ export const getLibraryCard = createAsyncThunk(
   "auth/librarycard",
   async (userId: string, thunkApi) => {
     try {
-      const { data } = await axios.post(BASE_URL + `/api/card`, {
+      const { data } = await axios.post(`/api/card`, {
         user: userId,
       });
       return data.libraryCard;

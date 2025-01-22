@@ -10,7 +10,7 @@ export interface BookHistoryProps{
 const BookHistory:React.FC<BookHistoryProps> = ({records}) => {
     return(
         <div className="book-history">
-            <h2>Loan History</h2>
+            <h2 className="border-b-2 pb-2">Loan History</h2>
             <div className="book-history-box">
                 {
                     records.map( rec => {
@@ -18,7 +18,7 @@ const BookHistory:React.FC<BookHistoryProps> = ({records}) => {
                             <BookHistoryItem key={rec._id} record={rec}/>
                         )
                     })
-                }
+                }      
             </div>
         </div>
     )

@@ -5,7 +5,7 @@ import { Book } from "../../../../models/Book";
 import axios from "axios";
 import { AutoAwesome } from "@mui/icons-material"
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+// const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const BookOfTheWeek:React.FC = () => {
 
@@ -14,7 +14,7 @@ const BookOfTheWeek:React.FC = () => {
     
     const fetchBookOfTheWeek = async() => {
         try {
-            const {data} = await axios.get(BASE_URL+'/api/book-of-the-week');
+            const {data} = await axios.get('/api/book-of-the-week');
             setBook(data);
         } catch (error:any) {
             setError(error.message);
@@ -22,7 +22,6 @@ const BookOfTheWeek:React.FC = () => {
     }
 
     useEffect(() => {
-        console.log('base url ----- ', BASE_URL)
         fetchBookOfTheWeek();
     }, []);
 

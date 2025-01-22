@@ -5,7 +5,7 @@ import { Book } from '../../../../models/Book';
 import { BookCard } from '../../../book';
 import { PlayArrowRounded } from "@mui/icons-material";
 import axios from 'axios';
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+// const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 interface CatalogOverviewSectionProps {
     label: string;
@@ -25,7 +25,7 @@ const CatalogOverviewSection: React.FC<CatalogOverviewSectionProps> = ({label}) 
 
     const fetchBooks = async() => {
         try {
-            const {data} = await axios.get(BASE_URL+`/api/book/query?genre=${label}`);
+            const {data} = await axios.get(`/api/book/query?genre=${label}`);
                 setBooks(data.page.items);
                 setError("");
         } catch (error:any) {
