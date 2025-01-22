@@ -9,6 +9,7 @@ const REDIS_U = process.env.REDIS_USERNAME;
 const REDIS_PWD = process.env.REDIS_PASSWORD;
 const REDIS_HOST = process.env.REDIS_HOST;
 const REDIS_PORT = Number(process.env.REDIS_PORT);
+const NODE_ENV = process.env.NODE_ENV || "production";
 
 export const config = {
   mongo: {
@@ -18,6 +19,7 @@ export const config = {
     port: PORT,
     rounds: ROUNDS,
     origin: ORIGIN_ENDPOINT,
+    node_env: NODE_ENV,
   },
   redis: {
     username: REDIS_U,

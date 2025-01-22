@@ -9,7 +9,9 @@ import { connectRedis } from "./utils/RedisClent";
     await connectDataBase();
     await connectRedis();
     app.listen(PORT, () => {
-      console.log(`server running on PORT : ${PORT}`);
+      console.log(
+        `server running on PORT : ${PORT} in ${config.server.node_env} mode`
+      );
     });
   } catch (error: any) {
     console.log("server error: ", error.message);

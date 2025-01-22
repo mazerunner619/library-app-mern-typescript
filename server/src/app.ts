@@ -14,13 +14,14 @@ app.use(
   })
 );
 
-app.use(express.static(path.resolve(__dirname, "../build")));
-
 registerRoutes(app);
 
-app.get("*", (req: any, res: any) => {
-  res.sendFile(path.resolve(__dirname, "../build", "index.html"));
-});
+if (config.server.node_env === "production") {
+  app.use(express.static(path.resolve(__dirname, "../build")));
+  app.get("*", (req: any, res: any) => {
+    res.sendFile(path.resolve(__dirname, "../build", "index.html"));
+  });
+}
 
 export const connectDataBase = async () => {
   try {
