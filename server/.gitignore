@@ -3,7 +3,7 @@ dist
 .env
 .env.*
 test-doc.txt
-test
 mailer.js
 example.http
 books.json
+.nyc_output

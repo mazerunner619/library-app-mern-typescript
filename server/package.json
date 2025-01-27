@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha -r ts-node/register ./test/**/*.test.ts",
+    "test-dev": "nyc mocha -r ts-node/register ./src/test/**/*.test.ts",
+    "test": "nyc mocha ./dist/test/**/*.test.js",
     "build": "rimraf dist && tsc",
     "client": "npm run dev --prefix client",
     "prestart": "npm run build",

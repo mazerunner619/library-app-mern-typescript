@@ -9,5 +9,5 @@
     "skipLibCheck": true //skip type checking of declaration files
   },
   "include": ["src/**/*"],
-  "exclude": ["client", "test"]
+  "exclude": ["client"]
 }
